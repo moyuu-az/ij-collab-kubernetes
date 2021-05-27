@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  # pod name
+  name: apache2-pod
+  labels:
+    app: http-app
+  # namespace name
+  namespace: ij-collab
+spec:
+  containers:
+    # Docker container name
+    - name: web-container
+      # using Docker image
+      image: php:7.0-apache
+      # port into container
+      ports:
+        - name: http-port
+          containerPort: 80
+      # mount directory：config in container side
+      volumeMounts:
+        - name: documentroot
+          mountPath: /var/www/html
+  # mount directory：config in host side
+  volumes:
+    - name: documentroot
+      hostPath:
+        path: /home/username/containers/web/html

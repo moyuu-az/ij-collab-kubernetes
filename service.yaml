@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  # service name
+  name: http-service
+  labels:
+    app: http-app
+  namespace: ij-collab
+spec:
+  selector:
+    app: http-app
+  # open port
+  ports:
+    - port: 8080
+      targetPort: http-port
+  type: NodePort
